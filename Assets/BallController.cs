@@ -32,7 +32,7 @@ public class BallController : MonoBehaviour
         {
             //GameoverTextにゲームオーバを表示
             this.gameoverText.GetComponent<Text>().text = "Game Over";
-            this.FinalScoreText.GetComponent<Text>().text = "TotalScore :" + sumscore;
+            
         }
     }
     void OnCollisionEnter(Collision other)
@@ -56,7 +56,8 @@ public class BallController : MonoBehaviour
             this.sumscore += 10;
         }
 
-       
+        this.FinalScoreText.GetComponent<Text>().text = "Score :" + sumscore;
+
     }
 
 }
