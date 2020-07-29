@@ -29,32 +29,39 @@ public class FripperController : MonoBehaviour {
 
     void Update()
     {
-        Touch touch = Input.GetTouch(0);
+        if (Input.touchCount > 0)
+        {
 
-        //左矢印キーを押した時左フリッパーを動かす
-        //if (Input.GetKeyDown(KeyCode.LeftArrow) && tag == "LeftFripperTag") 
+            Touch touch = Input.GetTouch(0);
 
-        if ((touch.position.x < (screenwidth / 2)) && tag == "LeftFripperTag") { 
-            SetAngle(this.flickAngle);
+            //左矢印キーを押した時左フリッパーを動かす
+            //if (Input.GetKeyDown(KeyCode.LeftArrow) && tag == "LeftFripperTag") 
+
+            if ((touch.position.x < (screenwidth / 2)) && tag == "LeftFripperTag")
+            {
+                SetAngle(this.flickAngle);
+            }
+            //右矢印キーを押した時右フリッパーを動かす
+            //if (Input.GetKeyDown(KeyCode.RightArrow) && tag == "RightFripperTag") 
+            if ((touch.position.x > (screenwidth / 2)) && tag == "RightFripperTag")
+            {
+                SetAngle(this.flickAngle);
+            }
+
+            //矢印キー離された時フリッパーを元に戻す
+
+            //if (Input.GetKeyUp(KeyCode.LeftArrow) && tag == "LeftFripperTag") 
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+
+                SetAngle(this.defaultAngle);
+            }
+            //if (Input.GetKeyUp(KeyCode.RightArrow) && tag == "RightFripperTag")
+            //{
+            //    SetAngle(this.defaultAngle);
+            //}
         }
-        //右矢印キーを押した時右フリッパーを動かす
-        //if (Input.GetKeyDown(KeyCode.RightArrow) && tag == "RightFripperTag") 
-        if ((touch.position.x > (screenwidth / 2)) && tag == "RightFripperTag") { 
-            SetAngle(this.flickAngle);
-        }
-
-        //矢印キー離された時フリッパーを元に戻す
-
-        //if (Input.GetKeyUp(KeyCode.LeftArrow) && tag == "LeftFripperTag") 
-
-        if (touch.phase == TouchPhase.Ended) { 
-
-            SetAngle(this.defaultAngle);
-        }
-        //if (Input.GetKeyUp(KeyCode.RightArrow) && tag == "RightFripperTag")
-        //{
-        //    SetAngle(this.defaultAngle);
-        //}
     }
 
     //フリッパーの傾きを設定
